@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs List</title>
+   
+</head>
+<body>
+
+   <header class="navbar">
+    
+    <nav>
+        <div class="logo">
+            MyCareer
+        </div>
+
+        <div class="list"> 
+        <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/jobs/applied_jobs">My Applications</a></li>
+            <li><a href="/jobs/saved">Saved Jobs</a></li>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+    
+
+
+    <div id="content">
+    <form  method="GET" class="search-bar">
+        <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
+        <button class="search-btn" type="submit">Search</button>
+    </form>
+
+    {% for job in jobs %}
+    <div class="job-card">
+        
+        <h2 class="job-title">{{ job.title }}</h2> </a>
+        <div class="job-row">
+            <div class="job-info">
+                <p>{{ job.company_name }}</p>
+                <p>{{ job.location }}</p>
+                <p>{{ job.job_type }}</p>
+            </div> 
+        </div>
+        <div class="job-actions">
+                <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="GET">
+                    <button type="submit" class="apply-btn">Apply</button>
+                </form>
+                <form  method="POST">
+                    <button type="submit" class="save-btn">Save</button>
+                </form>
+            </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+    <br>
+  
+</body>
+</html>
