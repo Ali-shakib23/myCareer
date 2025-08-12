@@ -3,9 +3,8 @@ import uuid
 from time import strftime
 from utilities import file_helper
 class Job : 
-    path = 'models/jobs.json'
-
-
+    path = 'data/jobs.json'
+    
     def __init__(self ,title, company_name, location, salary, job_type, description,
                  requirements, contact_email, date_posted, id=None):
         self.id = id or str(uuid.uuid4())
@@ -21,8 +20,8 @@ class Job :
 
     @classmethod
     def load_data(cls):
-        jobs  = file_helper.read_file("data/jobs.json")
-        return [cls(**job) for job in jobs]
+        job_lists  = file_helper.read_file(cls.path)
+        return [cls(**job) for job in job_lists]
        
     
     @classmethod

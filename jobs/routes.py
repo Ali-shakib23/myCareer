@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from models.job import Job
+from models.application import Application
 from time import strftime
 import json
 import uuid
@@ -30,11 +31,11 @@ def apply_job(job_id):
         application = {
                 "id": str(uuid.uuid4()),
                 "job_id": job_id,
-                "job_title": job.id,
+                "job_title": job.title,
                 "applicant_name": applicant_name,
                 "applicant_email": applicant_email,
                 "cover_letter": cover_letter,
-                "company_name" : job.id,
+                "company_name" : job.company_name,
                 "cv_link" : cv_link,
                 "date_applied": strftime('%Y-%m-%d')
             }
@@ -44,3 +45,9 @@ def apply_job(job_id):
         return redirect(url_for('jobs.list_jobs'))
 
     return render_template('apply_job.html', job=job)
+
+
+@jobs_bp.route('/applied_jobs/', methods=['GET'])
+def get_applied_jobs():
+    applied_jobs_data= Application.load_data()
+    return render_template('applied_jobs.html', applied_jobs=applied_jobs_data)

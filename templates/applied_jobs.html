@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applied Jobs</title>
+</head>
+<body>
+    <h1>Jobs You Applied For</h1>
+
+    {% if applied_jobs %}
+    <ul>
+        {% for job in applied_jobs %}
+        <li>
+            <strong>Job Title:</strong> {{ job.job_title }}<br>
+            <strong>Applicant Name:</strong> {{ job.applicant_name }}<br>
+            <strong>Applicant Email:</strong> {{ job.applicant_email }}<br>
+            <strong>Cover Letter:</strong> {{ job.cover_letter }}<br>
+            <strong>Company:</strong> {{ job.company_name }}<br>
+            <strong>Date Applied:</strong> {{ job.date_applied }}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You have not applied for any jobs yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="/jobs">Back to Jobs</a>
+</body>
+</html>
