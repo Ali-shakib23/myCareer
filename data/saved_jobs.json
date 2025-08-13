@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1a2b3c4d-0001-0000-0000-000000000001",
+        "title": "Software Engineer",
+        "company_name": "TechCorp",
+        "location": "Cairo, Egypt",
+        "salary": "EGP 15,000 - 20,000",
+        "job_type": "Full-time",
+        "description": "Develop and maintain web applications.",
+        "requirements": "3+ years experience in software development, knowledge of Python and JavaScript.",
+        "contact_email": "hr@techcorp.com",
+        "date_posted": "2025-08-01"
+    },
+    {
+        "id": "1a2b3c4d-0001-0000-0000-000000000001",
+        "title": "Software Engineer",
+        "company_name": "TechCorp",
+        "location": "Cairo, Egypt",
+        "salary": "EGP 15,000 - 20,000",
+        "job_type": "Full-time",
+        "description": "Develop and maintain web applications.",
+        "requirements": "3+ years experience in software development, knowledge of Python and JavaScript.",
+        "contact_email": "hr@techcorp.com",
+        "date_posted": "2025-08-01"
+    },
+    {
+        "id": "1a2b3c4d-0003-0000-0000-000000000003",
+        "title": "Graphic Designer",
+        "company_name": "Creative Studio",
+        "location": "Giza, Egypt",
+        "salary": "EGP 6,000 - 10,000",
+        "job_type": "Contract",
+        "description": "Create visual content for marketing campaigns.",
+        "requirements": "Proficiency in Adobe Creative Suite and a strong portfolio.",
+        "contact_email": "contact@creativestudio.com",
+        "date_posted": "2025-08-05"
+    },
+    {
+        "id": "1a2b3c4d-0004-0000-0000-000000000004",
+        "title": "Marketing Specialist",
+        "company_name": "Marketify",
+        "location": "Remote",
+        "salary": "EGP 7,000 - 13,000",
+        "job_type": "Full-time",
+        "description": "Plan and execute marketing strategies.",
+        "requirements": "Experience in digital marketing and SEO.",
+        "contact_email": "careers@marketify.com",
+        "date_posted": "2025-07-30"
+    }
+]

@@ -51,3 +51,16 @@ def apply_job(job_id):
 def get_applied_jobs():
     applied_jobs_data= Application.load_data()
     return render_template('applied_jobs.html', applied_jobs=applied_jobs_data)
+
+@jobs_bp.route("/save/<job_id>", methods=['POST'])
+def save_job(job_id):
+    job = Job.find_by_id(job_id)
+    if not job:
+        return "Job not found", 404
+    job.save_to_json("data/saved_jobs.json", job)
+    return redirect(url_for('jobs.saved_jobs'))
+
+@jobs_bp.route('/saved')
+def saved_jobs():
+    saved_jobs = Job.load_saved_jobs()
+    return render_template('saved_jobs.html', saved_jobs=saved_jobs)
