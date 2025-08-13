@@ -24,3 +24,5 @@ class BaseModel:
         data_db = cls.load_data()
         data = [item.to_dict() for item in data_db if item.id != id]
         file_helper.write_file(cls.path, data)
+
+    

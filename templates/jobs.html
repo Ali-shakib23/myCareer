@@ -27,7 +27,7 @@
 
 
     <div id="content">
-    <form  method="GET" class="search-bar">
+    <form action="{{ url_for('jobs.search_jobs') }}" method="GET" class="search-bar">
         <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
         <button class="search-btn" type="submit">Search</button>
     </form>

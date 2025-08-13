@@ -67,6 +67,7 @@ def saved_jobs():
 
 @jobs_bp.route("/remove/<job_id>", methods=['POST'])
 def remove_saved_job(job_id):
+    
     job_data = file_helper.read_file("data/saved_jobs.json")
 
     new_jobs = []
@@ -76,3 +77,14 @@ def remove_saved_job(job_id):
 
     file_helper.write_file("data/saved_jobs.json" , new_jobs)
     return redirect(url_for('jobs.saved_jobs'))
+
+@jobs_bp.route('/search')
+def search_jobs():
+    query = request.args.get('query', '').strip().lower()
+    jobs_list = Job.load_data()
+
+    searched_jobs = []
+    for job in jobs_list:
+        if query in job.title.lower():
+            searched_jobs.append(job)
+    return render_template('jobs.html', jobs=searched_jobs)
