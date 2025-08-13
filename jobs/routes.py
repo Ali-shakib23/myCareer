@@ -57,10 +57,22 @@ def save_job(job_id):
     job = Job.find_by_id(job_id)
     if not job:
         return "Job not found", 404
-    job.save_to_json(job)
+    job.save_to_json(job, "data/saved_jobs.json")
     return redirect(url_for('jobs.saved_jobs'))
 
 @jobs_bp.route('/saved')
 def saved_jobs():
     saved_jobs = Job.load_saved_jobs()
     return render_template('saved_jobs.html', saved_jobs=saved_jobs)
+
+@jobs_bp.route("/remove/<job_id>", methods=['POST'])
+def remove_saved_job(job_id):
+    job_data = file_helper.read_file("data/saved_jobs.json")
+
+    new_jobs = []
+    for job in job_data:
+        if job["id"] != job_id:
+            new_jobs.append(job)
+
+    file_helper.write_file("data/saved_jobs.json" , new_jobs)
+    return redirect(url_for('jobs.saved_jobs'))

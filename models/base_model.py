@@ -13,10 +13,11 @@ class BaseModel:
         return [cls(**item) for item in data_db]
 
     @classmethod
-    def save_to_json(cls, obj):
-        data_db = file_helper.read_file(cls.path)
+    def save_to_json(cls, obj, filepath=None):
+        path = filepath or cls.path
+        data_db = file_helper.read_file(path)
         data_db.append(obj.to_dict())
-        file_helper.write_file(cls.path, data_db)
+        file_helper.write_file(path, data_db)
 
     @classmethod
     def delete(cls, id):
