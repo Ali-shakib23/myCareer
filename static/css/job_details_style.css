@@ -1,0 +1,143 @@
+.navbar {
+    background-color: #ffffff;      
+    padding: 15px 40px;           
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+nav {
+    display: flex;
+    gap: 20px;
+}
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 40px;                     
+    margin: 0;
+    padding: 0;
+}
+.logo {
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 20px;
+    align-self: center;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #47579E;               
+    font-weight: bolder;
+    font-size: 16px;
+    transition: color 0.2s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+}
+
+.list .nav-list {
+    justify-content: center;
+}
+
+/* Hover effect */
+.nav-list a:hover {
+    color: #2E3A73;
+}
+
+#content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Job Details Container */
+.job-details-container {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    color: #47579E;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.job-details-container h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #2E3A73;
+}
+
+.company-info, .job-meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* Sections */
+.description-section, .requirements-section, .contact-section {
+    margin-top: 25px;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #617AFA;
+    padding-bottom: 6px;
+    color: #2E3A73;
+}
+
+.description-section p,
+.contact-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.requirements-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #444;
+}
+
+.requirements-section ul li {
+    margin-bottom: 6px;
+}
+
+/* Buttons container */
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+/* Buttons styling */
+.btn, button {
+    background-color: #617AFA;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #444;
+}
+
+.btn:hover, button:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+    background-color: #222;
+}

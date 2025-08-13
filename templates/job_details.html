@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/job_details_style.css') }}"/>
+</head>
+<body>
+
+<div id="content" class="job-details-container">
+    <h1>{{ job.title }}</h1> 
+    <div class="company-info">
+        <strong>{{ job.company_name }}</strong> &bull; {{ job.location }} &bull; {{ job.job_type }}
+    </div>
+    <div class="job-meta">
+        Salary: {{ job.salary }} &bull; Posted on: {{ job.date_posted }}
+    </div>
+
+    <div class="description-section">
+        <h2 class="section-title">Job Description</h2>
+        <p>{{ job.description }}</p>
+    </div>
+
+    <div class="requirements-section">
+        <h2 class="section-title">Requirements</h2>
+        <ul>
+            {% for req in job.requirements.split('\n') %}
+                <li>{{ req }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="contact-section">
+        <h2 class="section-title">Contact Email</h2>
+        <p>{{ job.contact_email }}</p>
+    </div>
+
+    <div class="buttons">
+        <a href="{{ url_for('jobs.apply_job', job_id=job.id) }}" class="btn">Apply</a>
+        <form action="{{ url_for('jobs.save_job', job_id=job.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn">Save Job</button>
+        </form>
+        <a href="{{ url_for('jobs.list_jobs') }}" class="btn btn-secondary">Back to Jobs</a>
+    </div>
+</div>
+
+</body>
+</html>

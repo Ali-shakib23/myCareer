@@ -88,3 +88,10 @@ def search_jobs():
         if query in job.title.lower():
             searched_jobs.append(job)
     return render_template('jobs.html', jobs=searched_jobs)
+
+@jobs_bp.route('/job_details/<job_id>', methods=['GET' , 'POST'])
+def get_job_details(job_id):
+    job = Job.find_by_id(job_id)
+    if not job:
+        return "Job not found", 404
+    return render_template('job_details.html', job=job)

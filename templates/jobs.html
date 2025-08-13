@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Jobs List</title>
-   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_styling.css') }}">
 </head>
 <body>
 
@@ -23,38 +23,39 @@
     </nav>
 </header>
 
-    
-
-
     <div id="content">
-    <form action="{{ url_for('jobs.search_jobs') }}" method="GET" class="search-bar">
-        <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
-        <button class="search-btn" type="submit">Search</button>
-    </form>
+        <form action="{{ url_for('jobs.search_jobs') }}" method="GET" class="search-bar">
+            <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
+            <button class="search-btn" type="submit">Search</button>
+        </form>
 
-    {% for job in jobs %}
-    <div class="job-card">
-        
-        <h2 class="job-title">{{ job.title }}</h2> </a>
-        <div class="job-row">
-            <div class="job-info">
-                <p>{{ job.company_name }}</p>
-                <p>{{ job.location }}</p>
-                <p>{{ job.job_type }}</p>
-            </div> 
-        </div>
-        <div class="job-actions">
-                <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="GET">
-                    <button type="submit" class="apply-btn">Apply</button>
-                </form>
-                <form action="{{ url_for('jobs.save_job', job_id=job.id) }}" method="POST">
-                    <button type="submit" class="save-btn">Save</button>
-                </form>
+        {% for job in jobs %}
+        <div class="job-card">
+            <a href="{{url_for('jobs.get_job_details', job_id=job.id) }}">
+                <h2 class="job-title">{{ job.title }}</h2> </a>
+            <div class="job-row">
+                <div class="job-info">
+                    <p>{{ job.company_name }}</p>
+                    <p>{{ job.location }}</p>
+                    <p>{{ job.job_type }}</p>
+                </div>
+                <div class="job-actions">
+                    <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="GET">
+                        <button type="submit" class="apply-btn">Apply</button>
+                    </form>
+                    <form action="{{ url_for('jobs.save_job', job_id=job.id) }}" method="POST">
+                        <button type="submit" class="save-btn">Save</button>
+                    </form>
+                </div>
             </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+
+
+
     <br>
+    <a href="{{ url_for('jobs.saved_jobs') }}">View Saved Jobs</a>
     <a href="{{ url_for('jobs.get_applied_jobs') }}">My Applied Jobs</a>
 </body>
 </html>

@@ -2,14 +2,15 @@
 <html>
 <head>
     <title>Apply to {{ job.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/application_form.css') }}"/>
     
 </head>
 <body>
-    <div >
+    <div class="application-container">
         <h1>Apply for {{ job.title }}</h1>
         <p><strong>{{ job.company_name }}</strong> — {{ job.location }} — {{ job.job_type }}</p>
-        <form  action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="POST" enctype="multipart/form-data">
-            <div>
+        <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="POST" enctype="multipart/form-data">
+            <div class="input_style">
             <label for="full_name">Full Name</label>
             <input type="text" id="full_name" name="full_name" required>
             </div>
@@ -19,19 +20,17 @@
             <input type="email" id="email" name="email" required>
             </div>
 
-           
+            <div class="input_style">
             <label for="phone">Phone Number</label>
             <input type="text" id="phone" name="phone">
-            
+            </div>
 
-            
+            <div class="input_style"> 
             <label for="cover_letter">Cover Letter</label>
             <textarea id="cover_letter" name="cover_letter" rows="5"></textarea>
+            </div>
+
             
-
-            <label for="cv_link">CV Link : (google drive)</label>
-            <input type="text" id="cv_link" name="cv_link" required>
-
             <button type="submit">Submit Application</button>
         </form>
 
