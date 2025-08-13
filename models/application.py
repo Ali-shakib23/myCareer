@@ -3,11 +3,14 @@ import json
 import uuid
 from time import strftime
 from utilities import file_helper
+from models.base_model import BaseModel
 
-class Application:
+
+class Application(BaseModel):
     path = 'data/application.json'
 
-    def __init__(self, id, job_id, job_title, applicant_name, applicant_email, cover_letter, company_name, cv_link, date_applied):
+    def __init__(self, id, job_id, job_title, applicant_name, applicant_email,
+                 cover_letter, company_name, cv_link, date_applied):
         self.id = id
         self.job_id = job_id
         self.job_title = job_title
@@ -18,10 +21,9 @@ class Application:
         self.cv_link = cv_link
         self.date_applied = date_applied
 
-
     @classmethod
-    def load_data(cls):
-        applications_list = file_helper.read_file(cls.path)
-        return [cls(**app) for app in applications_list]
+    def find_by_job_id(cls, job_id):
+        applications = cls.load_data()
+        return [app for app in cls.load_data() if app.job_id == job_id]
 
     

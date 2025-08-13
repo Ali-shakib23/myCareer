@@ -28,19 +28,19 @@ def apply_job(job_id):
         cover_letter = request.form.get('cover_letter')
         cv_link = request.form.get('cv_link')
 
-        application = {
-                "id": str(uuid.uuid4()),
-                "job_id": job_id,
-                "job_title": job.title,
-                "applicant_name": applicant_name,
-                "applicant_email": applicant_email,
-                "cover_letter": cover_letter,
-                "company_name" : job.company_name,
-                "cv_link" : cv_link,
-                "date_applied": strftime('%Y-%m-%d')
-            }
+        application = Application(
+        id=str(uuid.uuid4()),
+        job_id=job_id,
+        job_title=job.title,
+        applicant_name=applicant_name,
+        applicant_email=applicant_email,
+        cover_letter=cover_letter,
+        company_name=job.company_name,
+        cv_link=cv_link,
+        date_applied=strftime('%Y-%m-%d')
+        )
         
-        Job.save_to_json("data/application.json", application)
+        Application.save_to_json(application)
 
         return redirect(url_for('jobs.list_jobs'))
 
@@ -57,7 +57,7 @@ def save_job(job_id):
     job = Job.find_by_id(job_id)
     if not job:
         return "Job not found", 404
-    job.save_to_json("data/saved_jobs.json", job)
+    job.save_to_json(job)
     return redirect(url_for('jobs.saved_jobs'))
 
 @jobs_bp.route('/saved')
