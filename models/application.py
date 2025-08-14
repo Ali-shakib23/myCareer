@@ -25,5 +25,9 @@ class Application(BaseModel):
     def find_by_job_id(cls, job_id):
         applications = cls.load_data()
         return [app for app in cls.load_data() if app.job_id == job_id]
+    
+    @classmethod
+    def save_draft(cls, application , filepath):
+        cls.save_to_json(application, filepath)
 
     

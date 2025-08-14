@@ -39,9 +39,14 @@ def apply_job(job_id):
         cv_link=cv_link,
         date_applied=strftime('%Y-%m-%d')
         )
-        
-        Application.save_to_json(application)
+        action = request.form.get('action')
+        if action == "apply":
+            Application.save_to_json(application)
+            return redirect(url_for('jobs.job_details', job_id=job_id))
 
+        elif action == "draft":
+            Application.save_draft(application, "data/drafts.json")
+           
         return redirect(url_for('jobs.list_jobs'))
 
     return render_template('apply_job.html', job=job)

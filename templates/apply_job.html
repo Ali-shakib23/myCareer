@@ -3,10 +3,11 @@
 <head>
     <title>Apply to {{ job.title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/application_form.css') }}"/>
-    
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="application-container">
+        </form>
         <h1>Apply for {{ job.title }}</h1>
         <p><strong>{{ job.company_name }}</strong> — {{ job.location }} — {{ job.job_type }}</p>
         <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="POST" enctype="multipart/form-data">
@@ -31,8 +32,8 @@
             </div>
 
             
-            <button type="submit">Submit Application</button>
-        </form>
+            <button type="submit" class="submit-btn" name="action" value="apply">Submit Application</button>
+            <button type="submit" class="save-btn" name="action" value="draft">Save as a draft</button>
 
         <br>
     </div>
