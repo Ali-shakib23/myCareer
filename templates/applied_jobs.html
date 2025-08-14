@@ -2,29 +2,43 @@
 <html>
 <head>
     <title>Applied Jobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/applied_jobs.css') }}">
 </head>
 <body>
-    <h1>Jobs You Applied For</h1>
+     <div id="content">
+        <h1> My Applications</h1>
+        <p class="subtitle">Track your job applications.</p>
 
-    {% if applied_jobs %}
-    <ul>
-        {% for job in applied_jobs %}
-        <li>
-            <strong>Job Title:</strong> {{ job.job_title }}<br>
-            <strong>Applicant Name:</strong> {{ job.applicant_name }}<br>
-            <strong>Applicant Email:</strong> {{ job.applicant_email }}<br>
-            <strong>Cover Letter:</strong> {{ job.cover_letter }}<br>
-            <strong>Company:</strong> {{ job.company_name }}<br>
-            <strong>Date Applied:</strong> {{ job.date_applied }}
-        </li>
-        <hr>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>You have not applied for any jobs yet.</p>
-    {% endif %}
+        {% if applied_jobs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Applicant Name</th>
+                    <th>Applicant Email</th>
+                    <th>Company</th>
+                    <th>Date Applied</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in applied_jobs %}
+                <tr>
+                    <td>{{ job.job_title }}</td>
+                    <td>{{ job.applicant_name }}</td>
+                    <td>{{ job.applicant_email }}</td>
+                    <td>{{ job.company_name }}</td>
+                    <td>{{ job.date_applied }}</td>
+                    <td><a href="{{ url_for('jobs.get_job_details', job_id=job.job_id) }}" class="view-btn">View Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>You have not applied for any jobs yet.</p>
+        {% endif %}
 
-    <br>
-    <a href="/jobs">Back to Jobs</a>
+        <a href="/jobs" class="back-link">Back to Jobs</a>
+    </div>
 </body>
 </html>
