@@ -16,7 +16,20 @@ class BaseModel:
     def save_to_json(cls, obj, filepath=None):
         path = filepath or cls.path
         data_db = file_helper.read_file(path)
-        data_db.append(obj.to_dict())
+
+        updated = False
+
+    # Update existing object if found
+        for i in range(len(data_db)):
+            if data_db[i].get('id') == obj.id:
+                data_db[i] = obj.to_dict()
+                updated = True
+                break
+
+    # If not updated (object doesn't exist), append it
+        if not updated:
+            data_db.append(obj.to_dict())
+
         file_helper.write_file(path, data_db)
 
     @classmethod

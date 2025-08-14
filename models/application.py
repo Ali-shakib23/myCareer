@@ -30,4 +30,12 @@ class Application(BaseModel):
     def save_draft(cls, application , filepath):
         cls.save_to_json(application, filepath)
 
+    @classmethod
+    def load_drafts(cls):
+        drafts = file_helper.read_file("data/drafts.json")
+        
+        drafts_list = []
+        for draft in drafts:
+            drafts_list.append(draft)
+        return drafts_list
     

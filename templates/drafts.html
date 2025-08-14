@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Drafts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_styling.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <nav>
+        <div class="logo">
+            MyCareer
+        </div>
+
+        <div class="list"> 
+        <ul class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/jobs/applied_jobs">My Applied Applications</a></li>
+            <li><a href="/jobs/saved">Saved Jobs</a></li>
+            <li><a href="/jobs/drafts">My Drafts</a></li>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+<div id="content">
+
+    {% if drafts %}
+        {% for draft in drafts %}
+        <div class="job-card">
+            <h2 class="job-title">{{ draft.job_title }}</h2>
+            <div class="job-row">
+                <div class="job-info">
+                    <p>{{ draft.company_name }}</p>
+                    <p>{{ draft.date_applied }}</p>
+                </div>
+                <div class="job-actions">
+                    <!-- Edit draft -->
+                    <form action="{{ url_for('jobs.edit_draft', draft_id=draft.id) }}" method="GET">
+                        <button type="submit" class="apply-btn">Edit</button>
+                    </form>
+                    <!-- Optional: Delete draft -->
+                    <!-- <form action="{{ url_for('jobs.remove_saved_job', job_id=draft.id) }}" method="POST">
+                        <button type="submit" class="save-btn">Delete</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No drafts available.</p>
+    {% endif %}
+
+</div>
+
+<br>
+<a href="{{ url_for('jobs.list_jobs') }}">Back to Jobs List</a>
+<a href="{{ url_for('jobs.saved_jobs') }}">View Saved Jobs</a>
+<a href="{{ url_for('jobs.get_applied_jobs') }}">My Applied Jobs</a>
+
+</body>
+</html>

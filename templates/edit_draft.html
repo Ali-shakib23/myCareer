@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Draft - {{ draft.job_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/application_form.css') }}"/>
+</head>
+<body>
+    <div class="application-container">
+        <h1>Edit Draft for {{ draft.job_title }}</h1>
+        <p><strong>{{ draft.company_name }}</strong> — {{ draft.job_title }}</p>
+
+        <form action="{{ url_for('jobs.update_draft', draft_id=draft.id) }}" method="POST" enctype="multipart/form-data">
+            <div class="input_style">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" value="{{ draft.applicant_name }}" required>
+            </div>
+
+            <div class="input_style">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ draft.applicant_email }}" required>
+            </div>
+
+           
+            <div class="input_style"> 
+                <label for="cover_letter">Cover Letter</label>
+                <textarea id="cover_letter" name="cover_letter" rows="5">{{ draft.cover_letter }}</textarea>
+            </div>
+
+            <button type="submit" name="action" value="apply" class="submit-btn">Submit Application</button>
+            <button type="submit" name="action" value="draft" class="save-btn">Update Draft</button>
+        </form>
+    </div>
+    <a href="{{ url_for('jobs.drafts') }}">Back to Drafts List</a>
+</body>
+</html>

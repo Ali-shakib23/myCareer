@@ -42,7 +42,7 @@ def apply_job(job_id):
         action = request.form.get('action')
         if action == "apply":
             Application.save_to_json(application)
-            return redirect(url_for('jobs.job_details', job_id=job_id))
+            return redirect(url_for('jobs.get_job_details', job_id=job_id))
 
         elif action == "draft":
             Application.save_draft(application, "data/drafts.json")
@@ -100,3 +100,57 @@ def get_job_details(job_id):
     if not job:
         return "Job not found", 404
     return render_template('job_details.html', job=job)
+
+@jobs_bp.route('/drafts')
+def drafts():
+    drafts_list = Application.load_drafts()
+    return render_template('drafts.html', drafts=drafts_list)
+
+
+# EDIT DRAFT PAGE
+@jobs_bp.route('/drafts/edit/<draft_id>', methods=['GET'])
+def edit_draft(draft_id):
+    drafts_list = Application.load_drafts()
+    for d in drafts_list:
+        if d['id'] == draft_id:
+            draft = d
+            break
+    if not draft:
+        return "Draft not found", 404
+    if not draft:
+        return "Draft not found", 404
+    return render_template('edit_draft.html', draft=draft)
+
+
+
+@jobs_bp.route('/drafts/update/<draft_id>', methods=['POST'])
+def update_draft(draft_id):
+    drafts_list = Application.load_drafts()
+    for d in drafts_list:
+        if d['id'] == draft_id:
+            draft = d
+            break
+    if not draft:
+        return "Draft not found", 404
+    if not draft:
+        return "Draft not found", 404
+
+    
+    draft['applicant_name'] = request.form.get('full_name')
+    draft['applicant_email'] = request.form.get('email')
+   
+    draft['cover_letter'] = request.form.get('cover_letter')
+    draft['date_applied'] = strftime('%Y-%m-%d')
+
+    action = request.form.get('action')
+    if action == "apply":
+        
+        Application.save_to_json(Application(**draft))
+       
+        drafts_list = [d for d in drafts_list if d['id'] != draft_id]
+        file_helper.write_file("data/drafts.json", drafts_list)
+        return redirect(url_for('jobs.list_jobs'))
+    elif action == "draft":
+        
+        file_helper.write_file("data/drafts.json", drafts_list)
+        return redirect(url_for('jobs.drafts'))
