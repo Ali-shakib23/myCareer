@@ -4,9 +4,11 @@
     <title>Apply to {{ job.title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/application_form.css') }}"/>
     <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 <body>
     <div class="application-container">
+        <a href="{{ url_for('jobs.list_jobs') }}" class="back-link">Back to Jobs</a>
         </form>
         <h1>Apply for {{ job.title }}</h1>
         <p><strong>{{ job.company_name }}</strong> — {{ job.location }} — {{ job.job_type }}</p>
@@ -23,12 +25,12 @@
 
             <div class="input_style">
             <label for="phone">Phone Number</label>
-            <input type="text" id="phone" name="phone">
+            <input type="text" id="phone" name="phone" required>
             </div>
 
             <div class="input_style"> 
             <label for="cover_letter">Cover Letter</label>
-            <textarea id="cover_letter" name="cover_letter" rows="5"></textarea>
+            <textarea id="cover_letter" name="cover_letter" rows="5" required></textarea>
             </div>
 
             
@@ -37,6 +39,7 @@
 
         <br>
     </div>
-    <a href="{{ url_for('jobs.list_jobs') }}">Back to Jobs List</a>
+    <script src="{{ url_for('static', filename='javascript/loading_form_data.js') }}"></script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@
 </head>
 <body>
     <div class="application-container">
+        <a href="{{ url_for('jobs.drafts') }}">Back to Drafts List</a>
         <h1>Edit Draft for {{ draft.job_title }}</h1>
         <p><strong>{{ draft.company_name }}</strong> — {{ draft.job_title }}</p>
 
@@ -30,6 +31,5 @@
             <button type="submit" name="action" value="draft" class="save-btn">Update Draft</button>
         </form>
     </div>
-    <a href="{{ url_for('jobs.drafts') }}">Back to Drafts List</a>
 </body>
 </html>

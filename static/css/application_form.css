@@ -1,4 +1,7 @@
- .application-container {
+body{
+    background-color: #01458d;
+}
+.application-container {
     max-width: 700px;
     margin: 40px auto;
     padding: 20px;
@@ -50,5 +53,29 @@
 }
 
 .application-container .save-btn{
-     background-color: #fbbf24;
+    background-color: #fbbf24;
+}
+
+ a.view-btn {
+    color: #617AFA;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.view-btn:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background-color: #617AFA;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    background-color: #0056b3;
 }

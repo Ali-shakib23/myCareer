@@ -132,13 +132,9 @@ def update_draft(draft_id):
             break
     if not draft:
         return "Draft not found", 404
-    if not draft:
-        return "Draft not found", 404
 
-    
     draft['applicant_name'] = request.form.get('full_name')
     draft['applicant_email'] = request.form.get('email')
-   
     draft['cover_letter'] = request.form.get('cover_letter')
     draft['date_applied'] = strftime('%Y-%m-%d')
 
