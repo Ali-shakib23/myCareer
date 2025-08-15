@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/applied_jobs.css') }}">
 </head>
 <body>
+    
      <div id="content">
+        <a href="/jobs" class="back-link">Back to Jobs</a>
         <h1> My Applications</h1>
         <p class="subtitle">Track your job applications.</p>
 
@@ -37,8 +39,6 @@
         {% else %}
         <p>You have not applied for any jobs yet.</p>
         {% endif %}
-
-        <a href="/jobs" class="back-link">Back to Jobs</a>
     </div>
 </body>
 </html>
