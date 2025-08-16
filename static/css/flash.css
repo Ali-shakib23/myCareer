@@ -1,0 +1,45 @@
+
+#flash-messages {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+}
+
+#flash-messages .alert {
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    color: #fff;
+    font-weight: 500;
+    opacity: 0.95;
+    transition: opacity 0.5s ease;
+}
+
+.alert-success {
+    background-color: #28a745;
+}
+
+.alert-info {
+    background-color: #17a2b8;
+}
+
+.alert-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.alert-danger {
+    background-color: #dc3545; 
+}
+
+#flash-messages .btn-close {
+    background: transparent;
+    border: none;
+    float: right;
+    font-size: 1rem;
+    color: inherit;
+    cursor: pointer;
+}

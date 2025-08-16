@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from models.job import Job
 from models.application import Application
 from time import strftime
@@ -11,6 +11,7 @@ jobs_bp = Blueprint('jobs', __name__, url_prefix="/jobs")
 @jobs_bp.route('/')
 def list_jobs():
     jobs = Job.load_data()
+   
     return render_template('jobs.html', jobs=jobs)
 
 @jobs_bp.route('/apply/<job_id>', methods = ['GET' , 'POST'])
@@ -40,9 +41,10 @@ def apply_job(job_id):
         date_applied=strftime('%Y-%m-%d')
         )
         action = request.form.get('action')
+
         if action == "apply":
             Application.save_to_json(application)
-            return redirect(url_for('jobs.get_job_details', job_id=job_id))
+            flash("Applied successfully", "success")
 
         elif action == "draft":
             Application.save_draft(application, "data/drafts.json")
@@ -63,6 +65,7 @@ def save_job(job_id):
     if not job:
         return "Job not found", 404
     job.save_to_json(job, "data/saved_jobs.json")
+    flash("saved successfully", "success")
     return redirect(url_for('jobs.saved_jobs'))
 
 @jobs_bp.route('/saved')
@@ -81,6 +84,7 @@ def remove_saved_job(job_id):
             new_jobs.append(job)
 
     file_helper.write_file("data/saved_jobs.json" , new_jobs)
+    flash("Job removed successfully!", "success")
     return redirect(url_for('jobs.saved_jobs'))
 
 @jobs_bp.route('/search')
@@ -145,8 +149,10 @@ def update_draft(draft_id):
        
         drafts_list = [d for d in drafts_list if d['id'] != draft_id]
         file_helper.write_file("data/drafts.json", drafts_list)
+        flash("submitted successfuly" , "success")
         return redirect(url_for('jobs.list_jobs'))
     elif action == "draft":
         
         file_helper.write_file("data/drafts.json", drafts_list)
+        flash("updated successfully" , "success")
         return redirect(url_for('jobs.drafts'))

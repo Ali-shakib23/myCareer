@@ -2,9 +2,23 @@
 <html>
 <head>
     <title>My Saved Jobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/applied_jobs.css') }}">
 </head>
 <body>
+     {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="flash-messages">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <div id="content">
         <h1>My Saved Jobs</h1>
         <p class="subtitle">Keep track of your saved jobs.</p>
@@ -45,5 +59,8 @@
 
         <a href="{{ url_for('jobs.list_jobs') }}" class="back-link">Back to Jobs</a>
     </div>
+    <script src="{{url_for('static' , filename='javascript/flash_script.js')}}"></script>
+
 </body>
+
 </html>

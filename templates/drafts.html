@@ -3,9 +3,21 @@
 <head>
     <title>My Drafts</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home_styling.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
 </head>
 <body>
-
+ {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="flash-messages">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 <header class="navbar">
     <nav>
         <div class="logo">
@@ -52,7 +64,6 @@
     {% endif %}
 
 </div>
-
-<br>
+ <script src="{{url_for('static' , filename='javascript/flash_script.js')}}"></script>
 </body>
 </html>
