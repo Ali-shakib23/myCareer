@@ -30,7 +30,8 @@ def has_applied(applications, job_id, applicant_email):
     return False
 
 def has_draft(drafts, job_id, applicant_email):
+    
     for draft in drafts:
-        if draft.job_id == job_id and draft.applicant_email == applicant_email:
+        if draft["job_id"] == job_id and draft["applicant_email"] == applicant_email:
             return True
     return False
