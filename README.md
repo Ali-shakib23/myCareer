@@ -49,18 +49,18 @@ flask run
   * Line number(s) for the class definition: 7-35
   * Name of two properties: `id`, `title`
   * Name of two methods: `find_by_id(cls, id)`, `load_saved_jobs(cls)`
-  * File name and line numbers where the methods are used: `job/routes.py` (lines 96 and 126)
+  * File name and line numbers where the methods are used: `job/routes.py` (lines 131 and 182)
 * [x] It makes use of JavaScript in the front end and uses the `localStorage` of the web browser.
 * [x] It uses modern JavaScript (e.g., `let` and `const` instead of `var`).
 * [x] It makes use of reading and writing to the same file feature (`JSON` files).
 * [x] It contains conditional statements.
 
   * File name: `jobs/routes.py`
-  * Line number(s): 45, 51, 83, 106, 120, 127
+  * Line number(s):41, 64, 109
 * [x] It contains loops.
 
   * File name: `jobs/routes.py`
-  * Line number(s): 82, 105, 119, 140, 152
+  * Line number(s): 113
 * [x] It lets the user enter a value in a text box, which is processed by your back-end Python code.
 * [x] It doesn't generate any error message even if the user enters wrong input.
 * [x] It is styled using your own CSS.
