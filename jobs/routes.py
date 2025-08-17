@@ -43,12 +43,26 @@ def apply_job(job_id):
         action = request.form.get('action')
 
         if action == "apply":
-            Application.save_to_json(application)
-            flash("Applied successfully", "success")
+            applications = Application.load_data()
+            is_applied = False
+
+            applications = Application.load_data() or []
+
+            if file_helper.has_applied(applications, job_id, applicant_email):
+                flash("You have already applied for this job.", "warning")
+            else:
+                Application.save_to_json(application)
+                flash("Applied successfully", "success")
+
 
         elif action == "draft":
-            Application.save_draft(application, "data/drafts.json")
-           
+            drafts_list = Application.load_drafts()
+            if file_helper.has_draft(drafts_list, job_id, applicant_email):
+                flash("You already have a draft for this job.", "warning")
+            else:
+                Application.save_draft(application, "data/drafts.json")
+                flash("Draft saved successfully", "success")
+                
         return redirect(url_for('jobs.list_jobs'))
 
     return render_template('apply_job.html', job=job)
@@ -64,8 +78,17 @@ def save_job(job_id):
     job = Job.find_by_id(job_id)
     if not job:
         return "Job not found", 404
-    job.save_to_json(job, "data/saved_jobs.json")
+    saved_jobs = file_helper.read_file("data/saved_jobs.json")
+    for saved_job in saved_jobs:
+        if saved_job["id"] == job.id:
+            flash("You have already saved this job.", "warning")
+            return redirect(url_for('jobs.saved_jobs'))
+
+    Job.save_to_json(job, "data/saved_jobs.json")
     flash("saved successfully", "success")
+
+    
+
     return redirect(url_for('jobs.saved_jobs'))
 
 @jobs_bp.route('/saved')
@@ -110,8 +133,6 @@ def drafts():
     drafts_list = Application.load_drafts()
     return render_template('drafts.html', drafts=drafts_list)
 
-
-# EDIT DRAFT PAGE
 @jobs_bp.route('/drafts/edit/<draft_id>', methods=['GET'])
 def edit_draft(draft_id):
     drafts_list = Application.load_drafts()
@@ -121,15 +142,12 @@ def edit_draft(draft_id):
             break
     if not draft:
         return "Draft not found", 404
-    if not draft:
-        return "Draft not found", 404
     return render_template('edit_draft.html', draft=draft)
-
-
 
 @jobs_bp.route('/drafts/update/<draft_id>', methods=['POST'])
 def update_draft(draft_id):
     drafts_list = Application.load_drafts()
+    draft= None
     for d in drafts_list:
         if d['id'] == draft_id:
             draft = d
@@ -149,7 +167,7 @@ def update_draft(draft_id):
        
         drafts_list = [d for d in drafts_list if d['id'] != draft_id]
         file_helper.write_file("data/drafts.json", drafts_list)
-        flash("submitted successfuly" , "success")
+        flash("submitted successfuly", "success")
         return redirect(url_for('jobs.list_jobs'))
     elif action == "draft":
         

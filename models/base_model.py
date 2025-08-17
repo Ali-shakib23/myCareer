@@ -26,7 +26,7 @@ class BaseModel:
                 updated = True
                 break
 
-    # If not updated (object doesn't exist), append it
+    # appened if not exist
         if not updated:
             data_db.append(obj.to_dict())
 

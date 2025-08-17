@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded" , () => {
     for (let id of ids) {
         let element = document.getElementById(id);    
         const saved = localStorage.getItem(id);
+
+        if (!element) continue;
         if (saved){
             element.value = saved;
         }
