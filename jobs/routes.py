@@ -136,6 +136,7 @@ def drafts():
 @jobs_bp.route('/drafts/edit/<draft_id>', methods=['GET'])
 def edit_draft(draft_id):
     drafts_list = Application.load_drafts()
+    draft = None
     for d in drafts_list:
         if d['id'] == draft_id:
             draft = d

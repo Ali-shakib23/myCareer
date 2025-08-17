@@ -16,22 +16,22 @@
         <form action="{{ url_for('jobs.apply_job', job_id=job.id) }}" method="POST" enctype="multipart/form-data">
             <div class="input_style">
             <label for="full_name">Full Name</label>
-            <input type="text" id="full_name" name="full_name" required>
+            <input type="text" id="full_name" name="full_name">
             </div>
 
             <div class="input_style">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input id="email" name="email">
             </div>
 
             <div class="input_style">
             <label for="cv_link">Cv Link</label>
-            <input type="text" id="cv_link" name="cv_link" required>
+            <input type="text" id="cv_link" name="cv_link">
             </div>
 
             <div class="input_style"> 
             <label for="cover_letter">Cover Letter</label>
-            <textarea id="cover_letter" name="cover_letter" rows="5" required></textarea>
+            <textarea id="cover_letter" name="cover_letter" rows="5"></textarea>
             </div>
             <button type="submit" class="submit-btn" name="action" value="apply">Submit Application</button>
             <button type="submit" class="save-btn" name="action" value="draft">Save as a draft</button>
@@ -39,6 +39,7 @@
     </div>
     <script src="{{ url_for('static', filename='javascript/loading_form_data.js') }}"></script>
     <script src="{{url_for('static' , filename='javascript/flash_script.js')}}"></script>
+    <script src="{{url_for('static' , filename='javascript/validation.js')}}"></script>
 
 </body>
 </html>
