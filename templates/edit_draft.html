@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="application-container">
-        <a href="{{ url_for('jobs.drafts') }}">Back to Drafts List</a>
+        <a href="{{ url_for('jobs.drafts') }}" class="back-link">Back to Drafts List</a>
         <h1>Edit Draft for {{ draft.job_title }}</h1>
         <p><strong>{{ draft.company_name }}</strong> — {{ draft.job_title }}</p>
 
@@ -21,6 +21,10 @@
                 <input type="email" id="email" name="email" value="{{ draft.applicant_email }}" required>
             </div>
 
+            <div class="input_style">
+                <label for="cv_link">Cv Link</label>
+                <input type="text" id="cv_link" name="cv_link" value="{{draft.cv_link}}">
+            </div>
            
             <div class="input_style"> 
                 <label for="cover_letter">Cover Letter</label>
@@ -30,6 +34,7 @@
             <button type="submit" name="action" value="apply" class="submit-btn">Submit Application</button>
             <button type="submit" name="action" value="draft" class="save-btn">Update Draft</button>
         </form>
-    </div>
+    </div>      
+    <script src="{{url_for('static' , filename='javascript/validation.js')}}"></script>
 </body>
 </html>

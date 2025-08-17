@@ -38,15 +38,17 @@
 </header>
 
     <div id="content">
-        <form action="{{ url_for('jobs.search_jobs') }}" method="GET" class="search-bar">
-            <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
-            <button class="search-btn" type="submit">Search</button>
-        </form>
+    <form action="{{ url_for('jobs.search_jobs') }}" method="GET" class="search-bar">
+        <input class="search-input" type="text" name="query" placeholder="Search job name..." required>
+        <button class="search-btn" type="submit">Search</button>
+    </form>
 
+    {% if jobs %}
         {% for job in jobs %}
         <div class="job-card">
-            <a href="{{url_for('jobs.get_job_details', job_id=job.id) }}">
-                <h2 class="job-title">{{ job.title }}</h2> </a>
+            <a href="{{ url_for('jobs.get_job_details', job_id=job.id) }}">
+                <h2 class="job-title">{{ job.title }}</h2>
+            </a>
             <div class="job-row">
                 <div class="job-info">
                     <p>{{ job.company_name }}</p>
@@ -64,7 +66,14 @@
             </div>
         </div>
         {% endfor %}
-    </div>
+    {% else %}
+        <div class="no-jobs">
+            <p class="no-jobs-message">No jobs found.</p>
+            <a href="{{ url_for('jobs.list_jobs') }}" class="back-link">Back to all jobs</a>
+        </div>
+    {% endif %}
+</div>
+
     <br>
     <script src="{{url_for('static' , filename='javascript/flash_script.js')}}"></script>
 </body>

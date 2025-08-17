@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded" , () => {
-    const ids = ["full_name", "email", "phone", "cover_letter"];
+    const ids = ["full_name", "email", "cv_link", "cover_letter"];
     for (let id of ids) {
         let element = document.getElementById(id);    
         const saved = localStorage.getItem(id);

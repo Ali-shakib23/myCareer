@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": "1a2b3c4d-0001-0000-0000-000000000001",
+        "title": "Software Engineer",
+        "company_name": "TechCorp",
+        "location": "Cairo, Egypt",
+        "salary": "EGP 15,000 - 20,000",
+        "job_type": "Full-time",
+        "description": "Develop and maintain web applications.",
+        "requirements": "3+ years experience in software development, knowledge of Python and JavaScript.",
+        "contact_email": "hr@techcorp.com",
+        "date_posted": "2025-08-01"
+    }
+]

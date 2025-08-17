@@ -131,3 +131,25 @@ a{
 .save-btn:hover {
     background-color: #1e7e34;
 }
+
+
+.no-jobs {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.no-jobs-message {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.back-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #01458d;
+    font-weight: bold;
+}
+.back-link:hover {
+    text-decoration: underline;
+}

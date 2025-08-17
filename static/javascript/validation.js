@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Email validation
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (/^\s/.test(rawEmail)) {
             emailError.textContent = "Email cannot start with a space.";
             emailInput.style.borderColor = "red";

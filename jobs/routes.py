@@ -158,17 +158,22 @@ def update_draft(draft_id):
 
     draft['applicant_name'] = request.form.get('full_name')
     draft['applicant_email'] = request.form.get('email')
+    draft['cv_link'] = request.form.get('cv_link')
     draft['cover_letter'] = request.form.get('cover_letter')
     draft['date_applied'] = strftime('%Y-%m-%d')
 
     action = request.form.get('action')
     if action == "apply":
         
+        applications = Application.load_data() 
+        if file_helper.has_applied(applications, draft['job_id'], draft['applicant_email']):
+            flash("You have already applied for this job.", "warning")
+            return redirect(url_for('jobs.drafts'))
+        
         Application.save_to_json(Application(**draft))
-       
         drafts_list = [d for d in drafts_list if d['id'] != draft_id]
         file_helper.write_file("data/drafts.json", drafts_list)
-        flash("submitted successfuly", "success")
+        flash("Submitted successfully", "success")
         return redirect(url_for('jobs.list_jobs'))
     elif action == "draft":
         
